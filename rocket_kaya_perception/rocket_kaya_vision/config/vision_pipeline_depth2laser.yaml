@@ -1,0 +1,5 @@
+    scan_time: 0.033
+    range_min: 0.3
+    range_max: 3.0
+    scan_height: 240
+    output_frame: camera_depth_optical_frame

@@ -1,0 +1,9 @@
+<library path="rocket_kaya_hardware">
+  <class name="rocket_kaya_hardware/RocketKayaHardware"
+         type="rocket_kaya_hardware::RocketKayaHardware"
+         base_class_type="hardware_interface::SystemInterface">
+    <description>
+      Rocket Kaya hardware interface.
+    </description>
+  </class>
+</library>

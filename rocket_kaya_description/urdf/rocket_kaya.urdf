@@ -1,0 +1,129 @@
+<?xml version="1.0"?>
+<robot name="kaya"  xmlns:xacro="http://ros.org/wiki/xacro">
+
+	<link name="base_link">
+		<visual>
+			<geometry>
+				<mesh filename="package://rocket_kaya_description/meshes/kaya-base.dae"/>
+			</geometry>
+		</visual>
+	</link>
+
+	<link name="wheel_1_link">
+		<visual>
+			<geometry>
+				<mesh filename="package://rocket_kaya_description/meshes/wheel.dae"/>
+			</geometry>
+		</visual>
+	</link>
+
+	<link name="wheel_2_link">
+		<visual>
+			<geometry>
+				<mesh filename="package://rocket_kaya_description/meshes/wheel.dae"/>
+			</geometry>
+		</visual>
+	</link>
+
+	<link name="wheel_3_link">
+		<visual>
+			<geometry>
+				<mesh filename="package://rocket_kaya_description/meshes/wheel.dae"/>
+			</geometry>
+		</visual>
+	</link>
+
+	<link name="d435_link">
+		<visual>
+			<origin xyz="0.02505 0 0" rpy="1.5707963268 0 1.5707963268"/>
+			<geometry>
+				<mesh filename="package://rocket_kaya_description/meshes/d435.dae"/>
+			</geometry>
+		</visual>
+	</link>
+
+	<link name="camera_link">
+	</link>
+
+	<joint name="wheel_1_joint" type="continuous">
+		<origin xyz="0.058336000000000 0.101040915910338 0" rpy="0 0 -0.523598775598299"/>
+		<parent link="base_link"/>
+		<child link="wheel_1_link"/>
+		<axis xyz="0 1 0"/> 
+	</joint>
+
+	<joint name="wheel_2_joint" type="continuous">
+		<origin xyz="-0.116672000000000 0 0" rpy="0 0 1.570796326794897"/>
+		<parent link="base_link"/>
+		<child link="wheel_2_link"/>
+		<axis xyz="0 1 0"/> 
+	</joint>
+
+	<joint name="wheel_3_joint" type="continuous">
+		<origin xyz="0.058336000000000 -0.101040915910338 0" rpy="0 0 3.665191429188092"/>
+		<parent link="base_link"/>
+		<child link="wheel_3_link"/>
+		<axis xyz="0 1 0"/> 
+	</joint>
+
+	<joint name="d435_joint" type="fixed">
+		<origin xyz="0.040103 0 0.13647" rpy="0 0.3490658504 0"/>
+		<parent link="base_link"/>
+		<child link="d435_link"/>
+	</joint> 
+
+	<joint name="camera_joint" type="fixed">
+		<origin xyz="0.02085 0.0175 0" rpy="0 0 0"/>
+		<parent link="d435_link"/>
+		<child link="camera_link"/>
+	</joint> 
+
+	<ros2_control name="rocket-kaya" type="system">
+		<hardware>
+			<plugin>rocket_kaya_hardware/RocketKayaHardware</plugin>
+			<param name="serial-port">/dev/ttyUSB0</param>
+			<param name="baud-rate">4000000</param>
+		</hardware>
+
+		<joint name="wheel_1_joint">
+			<param name="id">1</param>
+			<param name="model">1060</param>
+			<param name="position_scale">0.00153398078789</param>
+			<param name="velocity_scale">0.0239808239224</param>
+			<command_interface name="velocity">
+				<param name="min">-1</param>
+				<param name="max">1</param>
+			</command_interface>
+			<state_interface name="position"/>
+			<state_interface name="velocity"/>
+		</joint>
+
+		<joint name="wheel_2_joint">
+			<param name="id">2</param>
+			<param name="model">1060</param>
+			<param name="position_scale">0.00153398078789</param>
+			<param name="velocity_scale">0.0239808239224</param>
+			<command_interface name="velocity">
+				<param name="min">-1</param>
+				<param name="max">1</param>
+			</command_interface>
+			<state_interface name="position"/>
+			<state_interface name="velocity"/>
+		</joint>
+
+		<joint name="wheel_3_joint">
+			<param name="id">3</param>
+			<param name="model">1060</param>
+			<param name="position_scale">0.00153398078789</param>
+			<param name="velocity_scale">0.0239808239224</param>
+			<command_interface name="velocity">
+				<param name="min">-1</param>
+				<param name="max">1</param>
+			</command_interface>
+			<state_interface name="position"/>
+			<state_interface name="velocity"/>
+		</joint>
+
+	</ros2_control>
+
+</robot>

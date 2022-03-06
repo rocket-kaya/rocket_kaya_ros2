@@ -1,0 +1,8 @@
+<library path="rocket_kaya_controller">
+  <class name="rocket_kaya_controller/RocketKayaController"
+         type="rocket_kaya_controller::RocketKayaController" base_class_type="controller_interface::ControllerInterface">
+  <description>
+    RocketKayaController omniwheel controller.
+  </description>
+  </class>
+</library>
